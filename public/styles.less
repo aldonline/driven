@@ -1,0 +1,148 @@
+// jamesbundle
+
+body {
+}
+
+@toc-width: 300px;
+@article-width: 700px;
+@gutter: 10px;
+
+.article-container {
+  width: @article-width;
+  padding: 30px;
+}
+
+.toc {
+  top: @gutter;
+  position: fixed;
+  width: @toc-width;
+  height: 100%;
+  margin-left: @gutter;
+  overflow-y: scroll;
+  a {
+  	font-size: 12px;
+  	color: #aaa;
+  	&:hover { color: #777; }
+  }
+
+}
+
+.toc:hover {
+  a {
+  	color: #888;
+    text-decoration: none;
+  }
+}
+
+.toc-line {
+  border-bottom: 1px solid #eee;
+  padding-top: 10px;
+  &:hover{ 
+    background-color: #eee;
+  }
+}
+
+@n: 10px;
+@c: 5px;
+
+.toc-line-home {
+  a {
+    font-size: 20px;
+    line-height: 40px;
+    display: block;
+    color: #ddd;
+  }
+  border-bottom: 1px solid #ccc;
+}
+.toc-line-0 {
+  padding-left: @n * 0 + @c;
+  a {
+    font-size: 20px;
+    display:block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 20px 0px;
+  }
+}
+.toc-line-1 { padding-left: @n * 1 + @c; }
+.toc-line-2 { padding-left: @n * 2 + @c; }
+.toc-line-3 { padding-left: @n * 3 + @c; }
+.toc-line-4 { padding-left: @n * 4 + @c; }
+.toc-line-5 { padding-left: @n * 5 + @c; }
+.toc-line-6 { padding-left: @n * 6 + @c; }
+
+/*
+.article-container { margin-left: 10px; border-right: 1px solid #eee; }
+.toc { left: @article-width + 80px; }
+*/
+
+.article-container {
+  margin-left: @toc-width + (@gutter * 2);
+  border-left: 1px solid #eee;
+}
+.toc { left: 0px; }
+
+
+.media {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+	.media-thumb {
+		width: 100px;
+		height: 100px;
+		background-size: cover;
+	}
+}
+
+.label {
+	margin: 5px;
+	background-color: #ccc;
+	&:hover {
+		background-color: #999;
+	}
+}
+
+.article-title {
+	font-size: 60px;
+	line-height: 65px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.article-subtitle {
+	font-size: 20px;
+	line-height: 20px;
+	font-style: italic;
+	color: #999;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #eee;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.article-detail {
+	font-size: 11px;
+	color: #999;
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+
+.article-image {
+	display: block;
+	max-width: 700px;
+	max-height: 300px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+.article-tags {
+	width: 100%;
+	text-align: center;	
+}
+
+
+
+

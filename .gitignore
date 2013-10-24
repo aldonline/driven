@@ -1,0 +1,10 @@
+/node_modules
+.DS_Store
+npm-debug.log
+/target
+/build
+*.swp
+*.swo
+
+.config/browserify/cache.json
+setup-local-env.sh
