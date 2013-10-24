@@ -1,5 +1,11 @@
 
 
+In order to run driven you need:
+
+* A Mongo Database
+* A Google App...
+* Set of Google Docs including index
+
 
 ```shell
 
@@ -9,7 +15,7 @@ cd driven
 npm install -d
 
 
-# set some env vars
+# set some env vars for the server
 export CLIENT_ID="XXYYZZ.apps.googleusercontent.com"
 export CLIENT_SECRET="XXYYZZ"
 export REDIRECT_URL="http://localhost/auth/google/redirect"
