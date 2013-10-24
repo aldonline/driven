@@ -1,6 +1,11 @@
+# Driven
+
+A Google Drive Micro Publishing Platform
+
+![Driven Logo](https://raw.github.com/aldonline/driven/master/public/driven-logo.png)
 
 
-In order to run driven you need:
+In order to run Driven you need:
 
 * A Mongo Database
 * A Google App...
