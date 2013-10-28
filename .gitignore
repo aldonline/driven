@@ -8,3 +8,4 @@ npm-debug.log
 
 .config/browserify/cache.json
 setup-local-env.sh
+setup-heroku.sh
