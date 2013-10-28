@@ -15,7 +15,6 @@ module.exports = ( cli ) ->
       ( opts_copy.headers ?= {} )['If-None-Match'] = entry.res.headers.etag
     cb2 = ( err, body, res ) ->
       return cb err if err?
-      console.log res.statusCode
       if res.statusCode not in [ 200, 304 ]
         return cb err, body, res
       if res.statusCode is 200 then cache[cache_key] = {res, body}

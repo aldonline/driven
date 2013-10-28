@@ -13,12 +13,10 @@ app.use express.compress()
 
 require('./lib/googleapis/middleware') app
 
-
 get_index = async.memoize ( cb ) -> Doc.get config.index_id(), cb
 get_doc_ids = ( cb ) -> get_index ( e, r ) -> cb null, ( d.id for d in r.metadata().docs )
 get_docs = ( cb ) -> get_doc_ids ( e, ids ) -> async.map ids, Doc.get, cb
 
-# app.use require('less-middleware') force:yes, src: __dirname + '/public'
 app.use express.static __dirname + '/public'
 
 jb = jamesbundle production: config.production()
