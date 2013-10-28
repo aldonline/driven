@@ -1,6 +1,10 @@
 HTML = require './HTML'
 _ = require 'underscore'
 
+###
+This is where we transform the raw HTML returned by the google
+docs service intro something more useful
+###
 process_html = ( html_str, cb ) ->
   require('jsdom').env html_str, [], (e, window) ->
     return cb e if e?
@@ -11,6 +15,7 @@ process_html = ( html_str, cb ) ->
 process_dom = ( $ ) ->
     title  =   $('.title').text()
     subtitle = $('.subtitle').text()
+    # we just pick the first image in the document
     image  =   $('img').attr 'src'
 
     # remove image
@@ -32,6 +37,9 @@ process_dom = ( $ ) ->
     # summary should be the first few paragraphs of text
     # which are not the TOC
 
+    ###
+    Metadata is stored as JSON in a code segment with lang=metadata
+    ###
     metadata = {}
     do ->
       codem = $('code[lang=metadata]')
@@ -106,6 +114,10 @@ remove_toc = ($) -> get_toc_links($).parent().parent().remove()
 #################################################
 
 
+###
+Google Docs uses the .title and .subtitle CSS classes.
+This clashes with Twitter Bootstrap so we prefix them.
+###
 replace_conflicting_style_names = ( $ ) ->
   s = $('style').html()
   s = s.split('.title{').join '.gdoc-title{'
@@ -123,6 +135,9 @@ replace_conflicting_style_names = ( $ ) ->
 #################################################
 #################################################
 
+###
+Google uses weird quotes. WTF.
+###
 replace_quotes = (str) ->
   reps = ['“”‘’','""'+"''"]
   for x, i in reps[0]
