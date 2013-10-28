@@ -5,6 +5,7 @@ async              = require 'async'
 db                 = require './lib/db'
 Blog               = require './lib/Blog'
 config             = require './lib/config'
+global_cache       = require './lib/global_cache'
 
 app = express()
 
@@ -78,7 +79,7 @@ app.get '/___admin___/delete_tokens', (req, res) ->
   db.delete_google_tokens (err) -> res.redirect '/___admin___'
 
 app.get '/___admin___/reset_cache', (req, res) ->
-  gccw.reset()
+  global_cache.reset()
   res.redirect '/___admin___'
 
 app.listen config.port(), (e) ->
