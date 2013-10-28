@@ -29,7 +29,8 @@
     "jsdom": "~0.8.2",
     "xmlhttprequest": "~1.6.0",
     "jamesbundle": "0.0.6",
-    "lazy_method": "0.0.2"
+    "lazy_method": "0.0.2",
+    "semver": "~2.2.1"
   },
   "devDependencies": {
     "mocha": "~1.9.0",
