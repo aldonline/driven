@@ -1,5 +1,5 @@
 async = require 'async'
-_ = require 'underscore'
+_     = require 'underscore'
 
 get_doc = require './get_doc'
 

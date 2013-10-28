@@ -3,28 +3,45 @@ get_doc            = require './googleapis/drive/get_doc'
 get_docs_in_folder = require './googleapis/drive/get_docs_in_folder'
 lazy               = require 'lazy_method'
 async              = require 'async'
+config             = require './config'
+global_cache       = require './global_cache'
 
 
 build = ( drive_file ) ->
-  # console.log drive_file
   new Doc drive_file, drive_file.__html
 
 module.exports =
+  ###
+  Fetch all docs in a given Google Drive folder
+  ###
   in_folder: ( id, cb ) ->
     get_docs_in_folder id, (e, docs) ->
       return cb e if e?
       cb null, ( build doc for doc in docs )
 
+  ###
+  Fetch a set of docs ( in parallel )
+  ###
   get_many: ( ids, cb ) ->
     async.map ids, _get, (r) -> cb? e, r
 
-  get: _get = ( id, cb ) ->
+  ###
+  Fetch one document by ID
+  ###
+  get: _get = ( id, cb ) -> global_cache id, cb, ( cb ) ->
     get_doc id, ( e, doc ) ->
       return cb e if e?
-      # console.log doc
       cb null, build doc
 
+
 class Doc
+  ###
+  This class is a view on top if three objects:
+  @f = the Google Drive file object returned by the Drive API
+  @h = the HTML object resulting from processing the text/html version of the file
+  @m = the metadata extracted from the text/html version of the file
+       ( the ```metadata ... ``` block )
+  ###
   constructor: (@f, @h) ->
     @m = @h.metadata or {}
 
@@ -43,14 +60,16 @@ class Doc
   tags:        lazy -> try t.trim() for t in @m.tags.split(','); catch e then []
   metadata:    lazy -> @m
 
+  # these are the meta tags that go inside the <head> ... </head>
   meta_tags:   lazy ->
     metas = require('./meta_tags')
       title:          @title()
       description:    @subtitle()
       url:            @url()
       image:          @image()
-      facebook_id:    '545415493'
-      google_plus_id: '102127397366064106648'
+      # TODO: take these from the index document
+      facebook_id:    config.facebook_id()
+      google_plus_id: config.google_plus_id()
     metas.join '\n'
 
   line_html:   lazy ->

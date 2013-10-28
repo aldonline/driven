@@ -1,5 +1,9 @@
-
-
+###
+We take most configuration parameters
+from env vars.
+This makes it easy to configure the app for 
+different environments (Heroku for instance)
+###
 env = process.env
 
 # https://accounts.google.com/b/0/IssuedAuthSubTokens
@@ -7,19 +11,17 @@ env = process.env
 module.exports =
   mongo_url:       -> env.MONGO_URL
   folder_id:       -> env.FOLDER_ID
-  index_id:        -> env.INDEX_ID
+  index_id:        -> env.INDEX_DOC_ID
+  facebook_id:     -> env.FACEBOOK_ID
+  google_plus_id:  -> env.GOOGLE_PLUS_ID
   port:            -> env.PORT or 9000
   production:      -> process.env.NODE_ENV is 'production'
 
   googleapis:
-    client_id:     -> env.CLIENT_ID
-    client_secret: -> env.CLIENT_SECRET
-    redirect_url:  -> env.REDIRECT_URL
+    client_id:     -> env.GOOGLE_APPS_ID
+    client_secret: -> env.GOOGLE_APPS_SECRET
+    redirect_url:  -> env.GOOGLE_OAUTH_REDIRECT_URL
     scope: ->
-      arr = [
-        #'https://www.googleapis.com/auth/calendar'
-        #'https://www.googleapis.com/auth/plus.me'
+      [
         'https://www.googleapis.com/auth/drive.readonly'
-      ]
-      arr.join ' '
-
+      ].join ' '

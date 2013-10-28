@@ -3,8 +3,7 @@ express            = require 'express'
 _                  = require 'underscore'
 async              = require 'async'
 db                 = require './lib/db'
-gccw               = require './lib/googleapis/global_caching_client_wrapper'
-Doc                = require './lib/Doc'
+Blog               = require './lib/Blog'
 config             = require './lib/config'
 
 app = express()
@@ -13,27 +12,44 @@ app.use express.compress()
 
 require('./lib/googleapis/middleware') app
 
-get_index = async.memoize ( cb ) -> Doc.get config.index_id(), cb
-get_doc_ids = ( cb ) -> get_index ( e, r ) -> cb null, ( d.id for d in r.metadata().docs )
-get_docs = ( cb ) -> get_doc_ids ( e, ids ) -> async.map ids, Doc.get, cb
-
 app.use express.static __dirname + '/public'
 
+###
+JamesBundle sets up javascript and css/less bundles
+for us automatically ( a simple analog to Ruby's asset pipeline )
+###
 jb = jamesbundle production: config.production()
 jb.mount app
 
 app.get '/', (req, res) ->
-  get_docs (e, docs) ->
-    res.send require('./lib/views/home') docs: docs, head_html: jb.html()
+  err = -> res.status(500)
+  Blog.get ( e, blog ) ->
+    return err() if e?
+    blog.all ( e, docs ) ->
+      return err() if e?
+      res.send require('./lib/views/home')
+        title:     blog.title()
+        docs:      docs
+        head_html: jb.html()
 
 app.get '/doc/:id', ( req, res ) ->
-  Doc.get req.params.id, ( e, doc ) ->
-    res.send require('./lib/views/doc') doc: doc, head_html: jb.html()
+  err = -> res.status(500)
+  Blog.get ( e, blog ) ->
+    return err() if e?
+    blog.by_id req.params.id, ( e, doc ) ->
+      return err() if e?
+      if doc?
+        res.send require('./lib/views/doc')
+          doc:       doc
+          head_html: jb.html()
+      else
+        res.status(404).send('Doc Not Found')
 
 
 ##############################################
 # Admin
 ##############################################
+
 
 
 app.get '/___admin___', (req, res) ->
@@ -48,6 +64,7 @@ app.get '/___admin___', (req, res) ->
           </a>
           </p>
           """
+
       res.send """
         <pre>#{ JSON.stringify t, null, 2 }</pre>
         <a href="/___admin___/delete_tokens">Delete Tokens</a>

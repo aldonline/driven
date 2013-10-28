@@ -1,15 +1,24 @@
 # Driven
 
-A Google Drive Micro Publishing Platform
+A Google Drive Driven Micro Publishing Platform
 
 ![Driven Logo](https://raw.github.com/aldonline/driven/master/public/driven-logo.png)
 
+I use Google Docs for everything. Period.
 
-In order to run Driven you need:
+# Document Conventions
+
+In order for the magic to happen you docs need to follow some rules.
+
+
+# Installing
+
+You need a bunch of things ( sorry - FOL )
 
 * A Mongo Database
-* A Google App...
-* Set of Google Docs including index
+* A Google Apps Account ( TODO )
+* Some Google Docs documents that you want to share with the word
+* Node.js ( version 0.10.18 or above - due to an HTTPS bug )
 
 
 ```shell
@@ -21,15 +30,23 @@ npm install -d
 
 
 # set some env vars for the server
-export CLIENT_ID="XXYYZZ.apps.googleusercontent.com"
-export CLIENT_SECRET="XXYYZZ"
-export REDIRECT_URL="http://localhost/auth/google/redirect"
+
+# You Google App stuff
+export GOOGLE_APPS_ID="XXYYZZ.apps.googleusercontent.com"
+export GOOGLE_APPS_SECRET="XXYYZZ"
+export GOOGLE_OAUTH_REDIRECT_URL="http://localhost/auth/google/redirect"
+
+# Mongo DB stuff
 export MONGO_URL="mongodb://user:passwor@foo.mongohq.com:10063/database-name"
-export INDEX_ID="UUJJNN"
+
+# This is the main document ( the one that holds all metadata and the index )
+export INDEX_DOC_ID="UUJJNN"
+
+# The port on which you want to run the server
 export PORT=9000
 
 
-# start the server
+# You can now start the server
 npm start
 
 
@@ -38,3 +55,7 @@ open http://localhost:9000/
 
 
 ```
+
+
+
+

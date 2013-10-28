@@ -1,6 +1,6 @@
 _ = require 'underscore'
 
-module.exports = ( {docs, head_html} ) ->
+module.exports = ( {title, docs, head_html} ) ->
 
     docs_html = _.map( docs, ((d) -> d.line_html()) ).join(' ')
 
@@ -10,7 +10,7 @@ module.exports = ( {docs, head_html} ) ->
     <head>
       <meta http-equiv="Content-Type" content="Type=text/html; charset=utf-8"/>
 
-      <title>Aldo's Notes</title>
+      <title>#{title}</title>
 
       <script src="/js/jquery-1.9.1.min.js"></script>
 

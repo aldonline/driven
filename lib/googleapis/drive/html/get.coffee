@@ -5,9 +5,9 @@ takes a drive file object
 and returns an HTML object
 ###
 
+# in mem cache
 html_cache = {}
 setInterval ( -> html_cache = {} ), 1000 * 60 * 60 * 24 # one day
-# TODO: proper async cache
 
 module.exports = ( doc_object, cb ) ->
   etag = doc_object.etag
@@ -21,7 +21,7 @@ module.exports = ( doc_object, cb ) ->
     get_raw_html link, (e, raw_html) ->
       return cb e if e?
       # process it
-      require('./process') raw_html, (e, r) ->
+      require('../../../html_processor/process') raw_html, (e, r) ->
         html_cache[key] = r
         cb null, r
 
