@@ -1,6 +1,7 @@
 // jamesbundle
 
 body {
+
 }
 
 @toc-width: 300px;
@@ -16,12 +17,13 @@ body {
   top: @gutter;
   position: fixed;
   width: @toc-width;
+  // z-index: -4;
   height: 100%;
-  margin-left: @gutter;
+  margin-left: 0px;
   overflow-y: scroll;
   a {
   	font-size: 12px;
-  	color: #aaa;
+  	color: #ccc;
   	&:hover { color: #777; }
   }
 
@@ -37,13 +39,15 @@ body {
 .toc-line {
   border-bottom: 1px solid #eee;
   padding-top: 10px;
+  line-height: 20px;
+  min-height: 20px;
   &:hover{ 
     background-color: #eee;
   }
 }
 
 @n: 10px;
-@c: 5px;
+@c: 10px;
 
 .toc-line-home {
   a {
@@ -71,26 +75,39 @@ body {
 .toc-line-5 { padding-left: @n * 5 + @c; }
 .toc-line-6 { padding-left: @n * 6 + @c; }
 
-/*
-.article-container { margin-left: 10px; border-right: 1px solid #eee; }
-.toc { left: @article-width + 80px; }
-*/
+
+
+
 
 .article-container {
+  background-color: white;
   margin-left: @toc-width + (@gutter * 2);
   border-left: 1px solid #eee;
-}
+
+
+  p {
+    color: #444;
+  }
+
+
+  h1, h2, h3, h4, h5, h6 {
+    border-top: 1px solid #eee;
+  }
+
+  h1 {
+    border-color: #aaa;
+    padding-top: 30px;
+    padding-bottom: 20px;
+  }
+
+  h2 { border-color: #ccc;}
+
+
+
 .toc { left: 0px; }
 
 
-.media {
-	padding-bottom: 10px;
-	border-bottom: 1px solid #eee;
-	.media-thumb {
-		width: 100px;
-		height: 100px;
-		background-size: cover;
-	}
+
 }
 
 .label {
@@ -144,5 +161,32 @@ body {
 }
 
 
+a {
+  color: #555;
+  //color: #333366;
+}
+
+.title {
+  color: black;
+}
 
 
+
+
+.home-container {
+  background-color: white;
+  margin-left: @toc-width + (@gutter * 2);
+  border-left: 1px solid #eee;
+
+.media {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  .media-thumb {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+  }
+}
+
+
+}

@@ -20,7 +20,7 @@ module.exports = ( {title, docs, head_html} ) ->
       #{head_html}
 
     </head>
-      <div class="article-container">
+      <div class="home-container">
         #{docs_html}
       </div>
     </html>
