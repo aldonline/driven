@@ -83,7 +83,7 @@ TODO
 ![Google Doc ID Screenshot](https://dl.dropboxusercontent.com/u/497895/__permalinks/google-doc-id.png)
 
 
-The ID for this document above is **1JyF08cCVDC4dvZOQsrx8qeMQVvdRSUC0ziyEvX4wo44**
+The ID for the document above is **1JyF08cCVDC4dvZOQsrx8qeMQVvdRSUC0ziyEvX4wo44**
 
 
 ## What happens if Google changes the Document format?
