@@ -4,7 +4,7 @@
 * *Why?* I use Google Docs for everything. Period.
 * *How?* A Node.js app that talks to the Drive Api, eats your docs and spits out a nice looking website
 * *When?* Soon. This stuff is in early alpha. But I am using it personally so it will be ready pretty soon.
-  * In the meantime: *Star this repository so you can get notified*
+  * In the meantime: **Star this repository so you can get notified**
 
 
 ![Driven Logo](https://raw.github.com/aldonline/driven/master/public/driven-logo.png)
@@ -80,7 +80,11 @@ TODO
 
 ## How do I find a document's ID?
 
-TODO: Screenshot
+![Google Doc ID Screenshot](https://dl.dropboxusercontent.com/u/497895/__permalinks/google-doc-id.png)
+
+
+The ID for this document above is **1JyF08cCVDC4dvZOQsrx8qeMQVvdRSUC0ziyEvX4wo44**
+
 
 ## What happens if Google changes the Document format?
 
