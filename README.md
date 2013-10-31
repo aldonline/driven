@@ -1,10 +1,12 @@
 # Driven
 
-A Google Drive Driven Micro Publishing Platform
+* *What?* A Google Drive Driven Micro Publishing Platform
+* *Why?* I use Google Docs for everything. Period.
+* *How?* A Node.js app that talks to the Drive Api, eats your docs and spits out a nice looking website.
+
 
 ![Driven Logo](https://raw.github.com/aldonline/driven/master/public/driven-logo.png)
 
-I use Google Docs for everything. Period.
 
 # Document Conventions
 
