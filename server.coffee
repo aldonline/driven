@@ -67,7 +67,6 @@ app.get '/___admin___', (req, res) ->
           """
 
       res.send """
-        <pre>#{ JSON.stringify t, null, 2 }</pre>
         <a href="/___admin___/delete_tokens">Delete Tokens</a>
         #{message}
         <a href="/___admin___/reset_cache">Reset Cache</a>
