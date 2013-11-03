@@ -60,8 +60,9 @@ module.exports = ( {doc, head_html} ) ->
             <a href="https://docs.google.com/document/d/#{doc.id()}/edit">Edit</a>
           </p>
           <div class="article-tags">#{doc.tags_html()}</div>
-
-          #{doc.body()}
+          <div class="article-body">
+            #{doc.body()}
+          </div>
 
         </div>
 

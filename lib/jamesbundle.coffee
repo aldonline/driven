@@ -35,7 +35,7 @@ build_toc_using_lis = ->
       node_ui n, depth + 1 for n in node.children
   
   # build a tree data structure using the build_toc helper
-  root = build_toc $('.article-container'), $
+  root = build_toc $('.article-body'), $
   
   # add a link to the top of the document
   # we will use it to "scroll to top"
